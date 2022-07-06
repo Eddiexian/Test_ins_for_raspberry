@@ -31,22 +31,28 @@ def end_record(vidout, output_file, status,machine_id,t_left_times,t_right_times
         pass
     try:
         server_connect.upload2ftp(output_file[0:-3]+'txt')
+        server_connect.deletefile(output_file[0:-4]+'txt')
     except:
         pass
     try:
         server_connect.upload2ftp(output_file[0:-4]+'F.jpg')
+        server_connect.deletefile(output_file[0:-4]+'F.jpg')
     except:
         pass
     try:
         server_connect.upload2ftp(output_file[0:-4]+'S.jpg')
+        server_connect.deletefile(output_file[0:-4]+'S.jpg')
     except:
         pass
     try:
         server_connect.upload2ftp(output_file[0:-4]+'C.jpg')
+        server_connect.deletefile(output_file[0:-4]+'C.jpg')
     except:
         pass
-    
-    server_connect.insertSQL(output_file, status,machine_id,t_left_times,t_right_times,durations,reason)
+    try:
+        server_connect.insertSQL(output_file, status,machine_id,t_left_times,t_right_times,durations,reason)
+    except:
+        pass
 
 
 def bluetooth(addr, buf_size):
